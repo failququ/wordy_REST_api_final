@@ -2,6 +2,7 @@ package com.wordy.rest.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +21,10 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "post_owner_id")
+    private List<Post> posts;
 
     public User() {
     }
